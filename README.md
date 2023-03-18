@@ -1,4 +1,8 @@
-# A Small Telegram Uploader
+# Telegram Uploader
+
+## Description
+
+A program that uploads one or more files to a Telegram chat
 
 ## Usage
 
