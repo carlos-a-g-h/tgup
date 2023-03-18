@@ -1,0 +1,54 @@
+name: Create binary
+
+on:
+  [workflow_dispatch]
+
+env:
+  APP_NAME: telegram_uploader
+  APP_NAME_SRC: telegram_uploader.py
+  APP_NAME_LINUX: telegram_uploader.amd64
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Fetch it
+        uses: actions/checkout@v3
+
+      - name: Setup python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.9.8"
+
+      - name: Install stuff
+        run: |
+          pip install -r req.txt
+          pip install pyinstaller
+
+      - name: Run pyinstaller
+        run: |
+          python3 -m pyinstaller --onefile "${{ env.APP_NAME_SRC }}"
+          mv -va "dist/${{ env.APP_NAME }}" "${{ env.APP_NAME_LINUX }}"
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          tag_name: "${{ env.APP_NAME }}"
+          release_name: "Release for ${{ env.APP_NAME }}"
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: ura
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: "${{ env.APP_NAME_LINUX }}"
+          asset_name: "${{ env.APP_NAME_LINUX }}"
+          asset_content_type: application/octet-stream
