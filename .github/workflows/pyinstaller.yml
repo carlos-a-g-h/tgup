@@ -6,7 +6,7 @@ on:
 env:
   APP_NAME: telegram_uploader
   APP_NAME_SRC: telegram_uploader.py
-  APP_NAME_LINUX: telegram_uploader.amd64
+  APP_NAME_LINUX: telegram_uploader.linux.amd64
 
 jobs:
   main:
@@ -39,7 +39,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           tag_name: "${{ env.APP_NAME }}"
-          release_name: "Release for ${{ env.APP_NAME }}"
+          release_name: "The Release"
           draft: false
           prerelease: false
 
