@@ -1,0 +1,6 @@
+{
+	'tg_api_id':'telegram api id',
+	'tg_api_hash':'telegram api hash',
+	'tg_bot_token':'telegram bot token',
+	'tg_chat':'user ID, username, chat ID',
+}
