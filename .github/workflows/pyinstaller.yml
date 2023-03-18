@@ -28,7 +28,8 @@ jobs:
 
       - name: Run pyinstaller
         run: |
-          python3 -m pyinstaller --onefile "${{ env.APP_NAME_SRC }}"
+          # python3 -m PyInstaller --onefile "${{ env.APP_NAME_SRC }}"
+          pyinstaller --onefile "${{ env.APP_NAME_SRC }}"
           mv -va "dist/${{ env.APP_NAME }}" "${{ env.APP_NAME_LINUX }}"
 
       - name: Create release
