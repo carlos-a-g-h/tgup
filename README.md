@@ -1,5 +1,7 @@
 # Telegram Uploader CLI
 
+[Download script](https://github.com/carlos-a-g-h/tgup/raw/main/tgup.py)
+
 [Download binary (Linux amd64)](https://github.com/carlos-a-g-h/tgup/releases/download/tgup/tgup.linux.amd64)
 
 ## Description
